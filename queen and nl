@@ -1,0 +1,75 @@
+#this func to print board in final stage Q is printed in board row formaat
+def print_board(board):
+    for row in board:
+        print(" ".join(row))#string to join separator consider it in string format
+
+#to check Q is in safe state in row and col wise
+def is_safe(board, row, col):
+    for i in range(col):
+        if board[row][i] == "Q":
+            return False # col madhe check karaych ki already queen is there
+        
+    for i, j in zip(range(row, -1, -1), range(col, -1 ,-1)):#parallel iterator
+        if board[i][j] == "Q":#if q is in upper left
+            return False
+    for i, j in zip(range(row, len(board), 1), range(col, -1 ,-1)):
+        if board[i][j] == "Q":#if q is in down left
+            return False
+    return True
+
+
+def solve(board,col):
+    if col>=len(board):
+        return True
+    
+    for i in range(len(board)):
+        if is_safe(board,i,col):
+            board[i][col]="Q"
+            if solve(board, col+1):
+                return True
+            board[i][col] = "."
+    return False
+
+n=int(input("Enter the number of Queens :"))
+board = [["." for i in range(n)] for j in range(n)]
+
+if solve(board, 0):
+    print_board(board)
+else:
+    print("Solution not found")
+    ---------------------------------------------------------
+
+nltk
+import nltk
+nltk.download('punkt') 
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+from nltk.tokenize import word_tokenize 
+from nltk.probability import FreqDist
+from nltk.tag import pos_tag
+nltk.download('averaged_perceptron_tagger') #for pos_tagging
+
+text = "This is a sample sentense. It contain multiple words and some of these repeat. We will analyze this text using NLP text "
+
+words = word_tokenize(text)
+print("tokenized words:")
+print (words)
+
+#for lowercase of all words
+words = [word.lower() for word in words]                             
+
+#frequency of words
+fdist = FreqDist(words)
+print("Word Frequency:")
+for word, freq in fdist.items():
+    print(f"{word}: {freq}")
+
+#remove stop words
+stop_words = set(stopwords.words('english'))
+filtered_words = [word for word in words if word.casefold() not in stop_words]
+print("Filtered Words")
+print(filtered_words)
+
+pos_tags = pos_tag(words)
+print("POS Tags:")
+print(pos_tags)
