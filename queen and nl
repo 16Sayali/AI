@@ -73,3 +73,20 @@ print(filtered_words)
 pos_tags = pos_tag(words)
 print("POS Tags:")
 print(pos_tags)
+
+
+
+
+
+
+
+
+df
+=
+pd
+.
+read_csv
+(
+r"C:\Users\JANHVI MAWAL\OneDrive\Desktop
+
+df['Tokenized Text']=df['Type'].apply(lambda x:word_tokenize(x.lower()))
