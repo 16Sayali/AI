@@ -106,3 +106,8 @@ for i in range(0,len(matrix)):
     final_cost.append(cost)
     cost=0
 print("Minimum cost: ",min(final_cost))
+
+0 10 15 20
+10 0 35 25
+15 35 0 30
+20 25 30 0
